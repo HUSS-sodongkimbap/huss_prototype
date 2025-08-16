@@ -1,0 +1,261 @@
+/* src/components/LoadingPage.css */
+
+.loading-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  z-index: 20;
+  position: relative;
+}
+
+.logo {
+  width: 100px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #555;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.loading-content {
+  position: relative;
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.text-area {
+  position: absolute;
+  left: 2%;
+  width: 40%;
+  z-index: 10;
+  transform: translateY(-50%);
+}
+
+.text-area h2 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1.3;
+  margin-bottom: 2rem;
+}
+
+/* 검색어 표시 스타일 */
+.search-prompt-display {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  border-left: 4px solid #e8843c;
+}
+
+.search-label {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0 0 0.5rem 0;
+  font-weight: 500;
+}
+
+.search-prompt {
+  font-size: 1rem;
+  color: #333;
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* 🚀 실시간 로딩 상태 패널 - 왼쪽 하단 */
+.loading-status-panel {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(232, 132, 60, 0.2);
+  z-index: 15;
+  min-width: 280px;
+  max-width: 320px;
+}
+
+.loading-status-panel h4 {
+  margin: 0 0 1rem 0;
+  color: #333;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.status-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.status-item.waiting {
+  background: #f8f9fa;
+  border-color: #e9ecef;
+}
+
+.status-item.loading {
+  background: #fff3cd;
+  border-color: #ffeaa7;
+  animation: pulse 1.5s infinite;
+}
+
+.status-item.completed {
+  background: #d1edff;
+  border-color: #b8daff;
+}
+
+.status-item.error {
+  background: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.status-icon {
+  font-size: 1.2rem;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+.status-label {
+  flex-grow: 1;
+  font-weight: 500;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.status-text {
+  font-size: 0.8rem;
+  color: #666;
+  font-weight: 400;
+}
+
+.status-item.loading .status-icon {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(0.98);
+  }
+}
+
+.map-area {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.map-container {
+  position: relative;
+  width: 70%;
+  height: 110%;
+}
+
+.map-background,
+.map-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .loading-container {
+    padding: 1rem;
+  }
+
+  .text-area {
+    width: 90%;
+    left: 5%;
+  }
+
+  .map-container {
+    width: 100%;
+    opacity: 0.3;
+  }
+
+  .search-prompt-display {
+    padding: 0.8rem;
+  }
+
+  .search-prompt {
+    font-size: 0.9rem;
+  }
+
+  .loading-status-panel {
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    min-width: auto;
+    max-width: none;
+  }
+
+  .status-item {
+    padding: 0.5rem;
+  }
+
+  .status-label {
+    font-size: 0.8rem;
+  }
+
+  .status-text {
+    font-size: 0.7rem;
+  }
+}
